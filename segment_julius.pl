@@ -31,10 +31,10 @@ use File::Basename 'fileparse';
 #### configuration
 
 ## data directory
-$datadir = "./wav";
+$datadir = "tools/wav";
 
 ## set to 1 to disable inserting silence at begin/end of sentence
-$disable_silence_at_ends=0;
+$disable_silence_at_ends=1;
 
 ## DEBUG: set to 1 to keep generated dfa and dict file
 $leave_dict_flag=0;
@@ -43,14 +43,10 @@ $leave_dict_flag=0;
 $debug_flag=0;
 
 ## julius executable
-if ($^O =~ /MSWin/){
-    $juliusbin=".\\bin\\julius-4.3.1.exe";
-} else {
-    $juliusbin="./bin/julius-4.3.1";
-}
+$juliusbin="julius/bin/julius";
 
 ## acoustic model
-$hmmdefs="./models/hmmdefs_monof_mix16_gid.binhmm"; # monophone model
+$hmmdefs="tools/models/hmmdefs_monof_mix16_gid.binhmm"; # monophone model
 #$hmmdefs="./models/hmmdefs_ptm_gid.binhmm"; # triphone model
 
 ## HMMList file (needed for triphone model)
@@ -306,7 +302,7 @@ sub yomi2voca {
     s/ろぉ/ r o:/g;
     s/わぁ/ w a:/g;
     s/をぉ/ o:/g;
-    
+
     s/う゛/ b u/g;
     s/でぃ/ d i/g;
     s/でぇ/ d e:/g;
@@ -487,4 +483,4 @@ sub yomi2voca {
 
     return $_;
 }
-    
+
